@@ -1,5 +1,5 @@
 """
-ASGI config for TechShop project.
+ASGI config for TechS project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
