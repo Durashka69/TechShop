@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
-    'Cart',
-    'rest_framework'
+    'main.apps.MainConfig',
+    'Cart.apps.CartConfig',
+    'rest_framework',
+    'authentication.apps.AuthenticationConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'authentication.User'
 ROOT_URLCONF = 'TechShop.urls'
 
 TEMPLATES = [

@@ -1,14 +1,6 @@
 from django.db import models
 
 
-class User(models.Model):
-    full_name = models.CharField(max_length=255, blank=True)
-    age = models.PositiveIntegerField(default=18)
-    email = models.EmailField()
-    phone = models.CharField(max_length=255)
-    password = models.CharField(max_length=255, null=False)
-
-
 class Category(models.Model):
     title = models.CharField(verbose_name='Категория', max_length=255)
     slug = models.SlugField(verbose_name='Слаг')
