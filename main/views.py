@@ -14,19 +14,9 @@ class ProductRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
 
 
-class UserListCreateAPIView(ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
 class CategoryListCreateView(ListCreateAPIView):
     queryset = Category.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = CategorySerializer
 
 
 class CategoryRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
