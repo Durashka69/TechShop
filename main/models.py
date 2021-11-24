@@ -16,10 +16,13 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(verbose_name='Название продукта', max_length=255)
-    image = models.ImageField(verbose_name='Изброжение продукта', blank=True, upload_to='static/product')
+    photo = models.ImageField(verbose_name='Изброжение продукта', blank=True, upload_to='static/product')
     price = models.PositiveIntegerField(verbose_name='Цена', null=False)
-    desc = models.TextField()
+    desc = models.TextField(verbose_name='Описание')
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
+    data_create = models.DateField(auto_now_add=False, verbose_name='Дата добавления')
+    is_published = models.BooleanField(default=True, verbose_name="Публикация")
+    memory = models.IntegerField(default=128, verbose_name="Память GB")
 
     def __str__(self):
         return self.title
@@ -27,11 +30,11 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = 'Продукты'
         verbose_name = "Продукт"
+        ordering = ['-data_create', 'title']
 
 
 class CartProduct(models.Model):
     user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.CASCADE)
-    # cart = models.ForeignKey('Cart', verbose_name='Корзина', on_delete=models.CASCADE, related_name='related_products')
     object_id = models.ForeignKey(Product, verbose_name='Продукт', on_delete=models.CASCADE, related_name='products')
     qty = models.PositiveIntegerField(verbose_name='Количество', default=1)
     final_price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Общая цена', default=0)

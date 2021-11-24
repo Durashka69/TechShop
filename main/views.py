@@ -2,6 +2,20 @@ from django.shortcuts import render
 from .models import *
 from .serializers import *
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import AllowAny, IsAuthenticated
+
+
+class ProductModelViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+
+    def get_serializer_class(self):
+        return ProductSerializer
+
+    def get_permissions(self):
+        if self.action in ('list', 'retrieve'):
+            return AllowAny(),
+        return IsAuthenticated(),
 
 
 class ProductListCreateView(ListCreateAPIView):

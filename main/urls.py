@@ -1,5 +1,10 @@
 from django.urls import path
 from .views import *
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+router.register('product', ProductModelViewSet, basename='shopproduct')
 
 urlpatterns = [
     path('create_list/category', CategoryListCreateView.as_view()),
@@ -13,3 +18,5 @@ urlpatterns = [
     path('create_list/customer', CustomerListCreateView.as_view()),
     path('update_destroy/customer/<int:pk>', CustomerRetrieveUpdateDestroyAPIView.as_view()),
 ]
+
+urlpatterns += router.urls
